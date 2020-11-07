@@ -76,8 +76,8 @@ reset.addEventListener('click', () => {
 })
 
 window.addEventListener('resize', () => {
-  const mq = window.matchMedia("(max-width: 640px)");
-  const mquery = window.matchMedia("(min-width: 641px)");
+  const mq = window.matchMedia("(max-width: 1024px)");
+  const mquery = window.matchMedia("(min-width: 1025px)");
   if (mq.matches) {
     span1.textContent = ":";
     span2.textContent = ".";
