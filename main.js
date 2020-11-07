@@ -3,6 +3,9 @@ const main = document.querySelector('.main');
 const min = document.querySelector('.minutes');
 const sec = document.querySelector('.seconds');
 const milisec = document.querySelector('.milliseconds');
+const span1 = document.querySelector('.display span:nth-child(2)');
+const span2 = document.querySelector('.display span:nth-child(4)');
+const span3 = document.querySelector('.display span:nth-child(6)');
 
 
 let time = 0;
@@ -33,7 +36,7 @@ const resetStopwatch = () => {
 const stopwatch = () => {
   time++;
 
-    if(time == 100) {
+  if(time == 100) {
     time = 0;
     seconds++;
   }
@@ -53,7 +56,7 @@ const stopwatch = () => {
 main.addEventListener('click', () => {
   
   if(!active){
-    interval = setInterval(stopwatch, 1);
+    interval = setInterval(stopwatch, 10);
     active = !active;
     main.textContent = "Stop";
   } 
@@ -72,3 +75,18 @@ reset.addEventListener('click', () => {
   active = false;
 })
 
+window.addEventListener('resize', () => {
+  const mq = window.matchMedia("(max-width: 640px)");
+  const mquery = window.matchMedia("(min-width: 641px)");
+  if (mq.matches) {
+    span1.textContent = ":";
+    span2.textContent = ".";
+    span3.textContent = "";
+  }
+
+  if (mquery.matches) {
+    span1.textContent = "minutes";
+    span2.textContent = "seconds";
+    span3.textContent = "milliseconds";
+  }
+})
