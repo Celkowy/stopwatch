@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  font-family: monospace;
+}
+
+.time {
+  position: absolute;
+  width: 100vw;
+  top: 40%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 60px;
+  text-align: center;
+}
+
+.wrapper {
+  position: absolute;
+  display: flex;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, -50%);
+}
+
+button {
+  font-size: 44px;
+  margin: 30px;
+  width: 200px;
+  background-color: transparent;
+  border: 3px solid black;
+  cursor: pointer;
+}
+
+button:hover {
+  color: white;
+  background-color: black;
+}
+
+@media (max-width: 640px) {
+  .time {
+    font-size: 42px;
+  }
+
+  button {
+    font-size: 24px;
+    width: 100px;
+    border-width: 2px;
+  }
+
+  button:hover {
+    color: black;
+    background-color: white;
+  }
+}
