@@ -29,8 +29,9 @@ const minAndSecReset = () => {
 const resetStopwatch = () => {
     minAndSecReset();
     clearInterval(interval);
-    main.textContent = "Start";
     displayTime();
+    main.textContent = "Start";
+    active = false;
 }
 
 const stopwatch = () => {
@@ -50,13 +51,13 @@ const stopwatch = () => {
   sec.innerHTML = seconds.toString().bold();
   time < 10 ? milisec.textContent = `0${time}` : milisec.textContent = `${time}`;
 
-  minutes == 15 ? resetStopwatch(1) : minutes = 0;
+  if(minutes == 1) resetStopwatch();
 }
 
 main.addEventListener('click', () => {
   
   if(!active){
-    interval = setInterval(stopwatch, 10);
+    interval = setInterval(stopwatch, 1);
     active = !active;
     main.textContent = "Stop";
   } 
