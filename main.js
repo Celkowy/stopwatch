@@ -49,8 +49,8 @@ const stopwatch = () => {
     minutes++;
   }
 
-  min.innerHTML = minutes.toString().bold();
-  sec.innerHTML = seconds.toString().bold();
+  displayContent(min, minutes);
+  displayContent(sec, seconds);
   time < 10 ? displayContent(milisec, `0${time}`) : displayContent(milisec, `${time}`);
 
   if(minutes == 1) resetStopwatch();

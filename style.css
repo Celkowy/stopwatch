@@ -33,6 +33,10 @@ body {
   font-size: 36px;
 }
 
+.bold {
+  font-weight: 600;
+}
+
 .wrapper {
   position: absolute;
   display: flex;
