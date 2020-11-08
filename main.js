@@ -7,7 +7,6 @@ const span1 = document.querySelector('.display span:nth-child(2)');
 const span2 = document.querySelector('.display span:nth-child(4)');
 const span3 = document.querySelector('.display span:nth-child(6)');
 
-
 let time = 0;
 let seconds = 0;
 let minutes = 0;
@@ -15,11 +14,14 @@ let milisecs = 0;
 let active = false;
 let interval;
 
+const displayContent = (element, value) => {
+  return element.textContent = value;
+}
 
 const displayTime = () => {
-  min.textContent = 0;
-  sec.textContent = 0;
-  milisec.textContent = "00";
+  displayContent(min, 0);
+  displayContent(sec, 0);
+  displayContent(milisec, "00");
 }
 
 const minAndSecReset = () => {
@@ -30,7 +32,7 @@ const resetStopwatch = () => {
     minAndSecReset();
     clearInterval(interval);
     displayTime();
-    main.textContent = "Start";
+    displayContent(main, "Start");
     active = false;
 }
 
@@ -49,20 +51,30 @@ const stopwatch = () => {
 
   min.innerHTML = minutes.toString().bold();
   sec.innerHTML = seconds.toString().bold();
-  time < 10 ? milisec.textContent = `0${time}` : milisec.textContent = `${time}`;
+  time < 10 ? displayContent(milisec, `0${time}`) : displayContent(milisec, `${time}`);
 
   if(minutes == 1) resetStopwatch();
+}
+
+if(window.innerWidth < 1024) {
+  displayContent(span1, ":");
+  displayContent(span2, ".");
+  displayContent(span3, "");
+} else {
+  displayContent(span1, "minutes");
+  displayContent(span2, "seconds");
+  displayContent(span3, "milliseconds");
 }
 
 main.addEventListener('click', () => {
   
   if(!active){
-    interval = setInterval(stopwatch, 1);
+    interval = setInterval(stopwatch, 10);
     active = !active;
-    main.textContent = "Stop";
+    displayContent(main, "Stop");
   } 
   else{
-    main.textContent = "Start";
+    displayContent(main, "Start");
     clearInterval(interval);
     active = !active;
   }
@@ -72,22 +84,6 @@ reset.addEventListener('click', () => {
   clearInterval(interval);
   minAndSecReset();
   displayTime();
-  main.textContent = "Start";
+  displayContent(main, "Start");
   active = false;
-})
-
-window.addEventListener('resize', () => {
-  const mq = window.matchMedia("(max-width: 1024px)");
-  const mquery = window.matchMedia("(min-width: 1025px)");
-  if (mq.matches) {
-    span1.textContent = ":";
-    span2.textContent = ".";
-    span3.textContent = "";
-  }
-
-  if (mquery.matches) {
-    span1.textContent = "minutes";
-    span2.textContent = "seconds";
-    span3.textContent = "milliseconds";
-  }
 })
